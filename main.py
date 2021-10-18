@@ -124,6 +124,8 @@ def modificare_lista(l):
             rezultat.append(x)
         else:
             nr_div = 0
+            if x < 0:
+                x = x * (-1)
             for j in range(2,x//2+1):
                 if x % j == 0:
                     nr_div = nr_div + 1
