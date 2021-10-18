@@ -2,7 +2,7 @@ def menu():
     print("1. Citirea unei liste de numere intregi")
     print("2. Afisarea listei dupa eliminarea duplicatelor")
     print("3. Afisarea sumei primelor n numere pozitive din lista")
-    print("4. ")
+    print("4. Verifica daca toate numerele pozitive din lista sunt in ordine crescatoare")
     print("5. ")
     print("6. Iesire")
     print("0. Afisare lista")
@@ -73,9 +73,34 @@ def test_suma_primele_n_pozitive():
     assert suma_primele_n_pozitive([1,2,3], 5) == "Dimensiunea listei este prea mica"
 
 
+def verifica_nr_pozitive_ordine_cresc(l):
+    '''
+    Verifica daca toate numerele pozitive din lista sunt in ordine crescatoare
+    :param l: o lista de numere intregi
+    :return: "DA", daca toate numerele pozitive din lista sunt in ordine crescatoare,
+            "NU" in caz contrar
+    '''
+    lista_pozitive = []
+    for x in l:
+        if x >= 0:
+            lista_pozitive.append(x)
+    for i in range(len(lista_pozitive)-1):
+        if lista_pozitive[i]>lista_pozitive[i+1]:
+            return "NU"
+    return "DA"
+
+
+def test_verifica_nr_pozitive_ordine_cresc():
+    assert verifica_nr_pozitive_ordine_cresc([]) == "DA"
+    assert verifica_nr_pozitive_ordine_cresc([-1, -2, -9, -10, -4]) == "DA"
+    assert verifica_nr_pozitive_ordine_cresc([10, 13, -1, 24, 33, 45]) == "DA"
+    assert verifica_nr_pozitive_ordine_cresc([1, 2, -3, -4, 5, 1, -9]) == "NU"
+
+
 def main():
     test_eliminare_duplicate()
     test_suma_primele_n_pozitive()
+    test_verifica_nr_pozitive_ordine_cresc()
     l = []
     while True:
         menu()
@@ -87,6 +112,8 @@ def main():
         elif optiune == 3:
             n = int(input("Dati numarul: "))
             print(suma_primele_n_pozitive(l, n))
+        elif optiune == 4:
+            print(verifica_nr_pozitive_ordine_cresc(l))
         elif optiune == 6:
             break
         elif optiune == 0:
