@@ -142,7 +142,6 @@ def test_modificare_lista():
     assert modificare_lista([2, 6, 6, 25]) == [0, 6, 6, 1]
 
 
-
 def main():
     test_eliminare_duplicate()
     test_suma_primele_n_pozitive()
